@@ -37,43 +37,6 @@ public class MovePiece : MonoBehaviour
 
         if (GameManager.Instance.canMove && pieceGrabbed)
         {
-            // if (Input.GetKeyDown("x"))
-            // {
-            //     xDown = true;
-            // }
-            // else if (Input.GetKeyUp("x"))
-            // {
-            //     xDown = false;
-            //
-            //     offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-            //         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-            // }
-            //
-            // if (Input.GetKeyDown("y"))
-            // {
-            //     yDown = true;
-            // }
-            // else if (Input.GetKeyUp("y"))
-            // {
-            //     yDown = false;
-            //
-            //     offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-            //         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-            // }
-
-            // if (Input.GetKeyDown("z"))
-            // {
-            //     zDown = true;
-            // }
-            // else if (Input.GetKeyUp("z"))
-            // {
-            //     zDown = false;
-            //
-            //     offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-            //         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-            // }
-
-
             DragPiece();
         }
     }
@@ -82,7 +45,7 @@ public class MovePiece : MonoBehaviour
     {
         if (GameManager.Instance.canMove && !pieceGrabbed)
         {
-            _renderer.material.color = Color.yellow;
+            _renderer.material.color = Color.green;
         }
     }
     private void OnMouseExit()
