@@ -104,18 +104,18 @@ public class MovePiece : MonoBehaviour
                 new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         }
     }
-    // private void OnMouseUp()
-    // {
-    //     if (pieceGrabbed)
-    //     {
-    //         pieceGrabbed = false;
-    //         _rigidbody.freezeRotation = false;
-    //         _rigidbody.useGravity = true;
-    //         _rigidbody.constraints = originalConstraints;
-    //         JengaManager.Instance.pieceSelected = false;
-    //
-    //     }
-    // }
+    private void OnMouseUp()
+    {
+        if (pieceGrabbed)
+        {
+            pieceGrabbed = false;
+            _rigidbody.freezeRotation = false;
+            _rigidbody.useGravity = true;
+            _rigidbody.constraints = originalConstraints;
+            GameManager.Instance.pieceSelected = false;
+    
+        }
+    }
 
     private void DragPiece()
     {
