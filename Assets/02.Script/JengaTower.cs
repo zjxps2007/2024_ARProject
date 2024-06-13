@@ -37,14 +37,12 @@ public class JengaTower : MonoBehaviour
                 
                 if (i % 2 == 0)
                 {
-                    zOffset = 0.3f;
+                    zOffset = 0.1f;
                 }
                 else
                 {
-                    zOffset = j * (blockDepth - 0.6f);
+                    zOffset = j * (blockDepth - 0.2f);
                 }
-                // 마커가 인식되면 그 위치에 젠가를 생성하면 됨
-                // 지금 이 코드는 이 스크립트가 달려 있는 오브젝트에서 작동함 
                 Vector3 position = this.transform.position + new Vector3(xOffset, i * blockHeight, zOffset);
 
                 Quaternion rotation = Quaternion.Euler(0, (i % 2 == 0) ? 0 : 90, 0);
