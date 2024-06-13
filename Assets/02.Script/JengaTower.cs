@@ -43,7 +43,7 @@ public class JengaTower : MonoBehaviour
                 {
                     zOffset = j * (blockDepth - 0.1f);
                 }
-                Vector3 position = this.transform.position + new Vector3(xOffset, i * blockHeight, zOffset);
+                Vector3 position = this.transform.position + new Vector3(xOffset, i * blockHeight, zOffset) + new Vector3(0, 0.01245f, 0);
 
                 Quaternion rotation = Quaternion.Euler(0, (i % 2 == 0) ? 0 : 90, 0);
                 Instantiate(blockPrefab, position, rotation);

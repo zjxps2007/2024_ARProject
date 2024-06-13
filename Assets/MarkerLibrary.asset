@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
   m_Name: MarkerLibrary
   m_EditorClassIdentifier: 
-  m_GuidLow: 0
-  m_GuidHigh: 0
+  m_GuidLow: 5431658758947766167
+  m_GuidHigh: 6972411163354860734
   m_DataStore:
     m_Storage: []
   m_Images:
@@ -23,7 +23,7 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 15128825814309907361
       m_GuidHigh: 17391174282062609528
-    m_Size: {x: 0.15, y: 0.15}
+    m_Size: {x: 2, y: 2}
     m_SpecifySize: 1
     m_Name: Jenga
     m_Texture: {fileID: 0}
