@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8201622615619500870}
   - component: {fileID: 8201622615619500889}
   - component: {fileID: 8201622615619500888}
-  - component: {fileID: 8201622615619500869}
   - component: {fileID: 7285924650658747780}
   m_Layer: 8
   m_Name: JengaPiece
@@ -135,20 +134,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.074999996, y: 0.015000001, z: 0.024999999}
   m_Center: {x: 0, y: 2.3283064e-10, z: 0}
---- !u!114 &8201622615619500869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8201622615619500891}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158815fb82ddb2c4eb0108220952e12e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minFriction: 0.15
-  maxFriction: 0.3
 --- !u!114 &7285924650658747780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +141,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8201622615619500891}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d1df06c86467064a849526e4678e091, type: 3}
   m_Name: 
