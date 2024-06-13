@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8201622615619500888}
   - component: {fileID: 8201622615619500869}
   - component: {fileID: 7285924650658747780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JengaPiece
   m_TagString: JengaPiece
   m_Icon: {fileID: 0}
