@@ -37,11 +37,11 @@ public class JengaTower : MonoBehaviour
                 
                 if (i % 2 == 0)
                 {
-                    zOffset = 0.1f;
+                    zOffset = 0.05f;
                 }
                 else
                 {
-                    zOffset = j * (blockDepth - 0.2f);
+                    zOffset = j * (blockDepth - 0.1f);
                 }
                 Vector3 position = this.transform.position + new Vector3(xOffset, i * blockHeight, zOffset);
 
