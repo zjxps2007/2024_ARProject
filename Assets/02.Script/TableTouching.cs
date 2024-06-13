@@ -42,8 +42,9 @@ public class TableTouching : MonoBehaviour
 
     public void OnGameOverButton()
     {
-        button.SetActive(false);
+        _gameManager.piecesTouching = 0;
         Time.timeScale = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        button.SetActive(false);
+        SceneManager.LoadScene(0);
     }
 }
