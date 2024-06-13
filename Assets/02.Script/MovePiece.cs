@@ -24,7 +24,7 @@ public class MovePiece : MonoBehaviour
         yDown = false;
         zDown = false;
 
-        JengaManager.Instance.canMove = true;
+        GameManager.Instance.canMove = true;
     }
 
     private void Update()
@@ -35,43 +35,43 @@ public class MovePiece : MonoBehaviour
             _rigidbody.velocity = v.normalized * maxVelocity;
         }
 
-        if (JengaManager.Instance.canMove && pieceGrabbed)
+        if (GameManager.Instance.canMove && pieceGrabbed)
         {
-            if (Input.GetKeyDown("x"))
-            {
-                xDown = true;
-            }
-            else if (Input.GetKeyUp("x"))
-            {
-                xDown = false;
+            // if (Input.GetKeyDown("x"))
+            // {
+            //     xDown = true;
+            // }
+            // else if (Input.GetKeyUp("x"))
+            // {
+            //     xDown = false;
+            //
+            //     offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+            //         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            // }
+            //
+            // if (Input.GetKeyDown("y"))
+            // {
+            //     yDown = true;
+            // }
+            // else if (Input.GetKeyUp("y"))
+            // {
+            //     yDown = false;
+            //
+            //     offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+            //         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            // }
 
-                offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-            }
-
-            if (Input.GetKeyDown("y"))
-            {
-                yDown = true;
-            }
-            else if (Input.GetKeyUp("y"))
-            {
-                yDown = false;
-
-                offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-            }
-
-            if (Input.GetKeyDown("z"))
-            {
-                zDown = true;
-            }
-            else if (Input.GetKeyUp("z"))
-            {
-                zDown = false;
-
-                offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
-                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-            }
+            // if (Input.GetKeyDown("z"))
+            // {
+            //     zDown = true;
+            // }
+            // else if (Input.GetKeyUp("z"))
+            // {
+            //     zDown = false;
+            //
+            //     offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
+            //         new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+            // }
 
 
             DragPiece();
@@ -80,7 +80,7 @@ public class MovePiece : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (JengaManager.Instance.canMove && !pieceGrabbed)
+        if (GameManager.Instance.canMove && !pieceGrabbed)
         {
             _renderer.material.color = Color.yellow;
         }
@@ -92,42 +92,41 @@ public class MovePiece : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!JengaManager.Instance.pieceSelected && JengaManager.Instance.canMove)
+        if (!GameManager.Instance.pieceSelected && GameManager.Instance.canMove)
         {
             pieceGrabbed = true;
             _rigidbody.freezeRotation = true;
             _rigidbody.useGravity = false;
-            JengaManager.Instance.pieceSelected = true;
+            GameManager.Instance.pieceSelected = true;
 
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
             offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(
                 new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         }
     }
-    private void OnMouseUp()
-    {
-        if (pieceGrabbed)
-        {
-            pieceGrabbed = false;
-            _rigidbody.freezeRotation = false;
-            _rigidbody.useGravity = true;
-            _rigidbody.constraints = originalConstraints;
-            JengaManager.Instance.pieceSelected = false;
-
-        }
-    }
+    // private void OnMouseUp()
+    // {
+    //     if (pieceGrabbed)
+    //     {
+    //         pieceGrabbed = false;
+    //         _rigidbody.freezeRotation = false;
+    //         _rigidbody.useGravity = true;
+    //         _rigidbody.constraints = originalConstraints;
+    //         JengaManager.Instance.pieceSelected = false;
+    //
+    //     }
+    // }
 
     private void DragPiece()
     {
 
         _rigidbody.Sleep();
 
-        if ( Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
         }
         
-
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 translatedPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
         Vector3 newPosition = transform.position;
@@ -138,26 +137,19 @@ public class MovePiece : MonoBehaviour
             {
                 newPosition.x = translatedPosition.x;
             }
-
             if (yDown)
             {
                 newPosition.y = translatedPosition.y;
             }
-
             if (zDown)
             {
                 newPosition.z = translatedPosition.z;
             }
-
         }
         else
         {
             newPosition = translatedPosition;
         }
-
         transform.position = newPosition;
-
     }
-    
-
 }

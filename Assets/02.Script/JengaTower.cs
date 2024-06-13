@@ -2,52 +2,52 @@ using UnityEngine;
 
 public class JengaTower : MonoBehaviour
 {
-    public GameObject blockPrefab; // 블록 프리팹
-    public int layers = 10; // 젠가 타워의 층 수
+    public GameObject jengaPiece;  // Jenga 조각 프리팹
+    public Vector3 spawnPoint;  // Jenga 조각의 초기 스폰 지점
+    private float pieceOffsetZ = 0.25f;  // Jenga 조각의 Z축 오프셋
+    private float pieceOffsetY = 0.16f;  // Jenga 조각의 Y축 오프셋
+    public int layers = 10;  // 생성할 Jenga 층의 총 수
+    private int currentLayer;  // 현재 생성 중인 층을 추적
+    private float spawnDelay = 0.1f;  // 각 층을 생성하는 데 걸리는 지연 시간
 
-    void Start()
+    private void Start()
     {
-        BuildTower();
+        currentLayer = 0;
+        SpawnJengaPieces();
     }
 
-    void BuildTower()
+    private void SpawnJengaPieces()
     {
-        float blockHeight = blockPrefab.transform.localScale.y;
-        float blockWidth = blockPrefab.transform.localScale.x;
-        float blockDepth = blockPrefab.transform.localScale.z;
-
-        // 층수 만큼 반복
-        for (int i = 0; i < layers; i++)
+        if (currentLayer < layers)
         {
-            // 층수에 맞는 대로 배치
-            for (int j = 0; j < 3; j++)
+            if (currentLayer % 2 == 0)
             {
-                //홀수층에서는 z축으로 블록을 배치
-                float xOffset;
-                float zOffset;
-                
-                if (i % 2 == 0)
-                {
-                    xOffset = j * blockWidth - blockWidth;
-                }
-                else
-                {
-                    xOffset = 0;
-                }
-                
-                if (i % 2 == 0)
-                {
-                    zOffset = 0.05f;
-                }
-                else
-                {
-                    zOffset = j * (blockDepth - 0.1f);
-                }
-                Vector3 position = this.transform.position + new Vector3(xOffset, i * blockHeight, zOffset) + new Vector3(0, 0.01245f, 0);
-
-                Quaternion rotation = Quaternion.Euler(0, (i % 2 == 0) ? 0 : 90, 0);
-                Instantiate(blockPrefab, position, rotation);
+                SpawnHorizontalLayer(currentLayer);
             }
+            else
+            {
+                SpawnVerticalLayer(currentLayer);
+            }
+            currentLayer++;
+            Invoke("SpawnJengaPieces", spawnDelay);  // 지연 시간 후 재귀적으로 호출
         }
+    }
+
+    private void SpawnHorizontalLayer(int layer)
+    {
+        Vector3 center = new Vector3(spawnPoint.x, spawnPoint.y + pieceOffsetY * layer, spawnPoint.z);
+        Quaternion rotation = new Quaternion();
+        Instantiate(jengaPiece, center, rotation);
+        Instantiate(jengaPiece, new Vector3(center.x, center.y, center.z + pieceOffsetZ), rotation);
+        Instantiate(jengaPiece, new Vector3(center.x, center.y, center.z - pieceOffsetZ), rotation);
+    }
+
+    private void SpawnVerticalLayer(int layer)
+    {
+        Vector3 center = new Vector3(spawnPoint.x, spawnPoint.y + pieceOffsetY * layer, spawnPoint.z);
+        Quaternion rotation = Quaternion.Euler(0, 90, 0);
+        Instantiate(jengaPiece, center, rotation);
+        Instantiate(jengaPiece, new Vector3(center.x + pieceOffsetZ, center.y, center.z), rotation);
+        Instantiate(jengaPiece, new Vector3(center.x - pieceOffsetZ, center.y, center.z), rotation);
     }
 }
